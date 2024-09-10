@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>File Manager</title>
+    <style>
+        #fileInput {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            border-radius: 20px;
+            font-size: 16px;
+            border: none;
+            margin: 10px 0;
+        }
+        .custom-file-upload:hover { 
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #a389ff;
+            color: rgb(0, 0, 0);
+            border-radius: 20px;
+            font-size: 16px;
+            border: none;
+            margin: 10px 0;
+        }
+
+
+        button {
+            padding: 10px 20px;
+            background-color: rgba(176, 177, 255, 0.594);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #a389ff;
+        }
+
+        #fileList {
+            margin-top: 20px;
+            min-width: 50%;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #fileList li {
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            border-bottom: 1px solid #cccccc3d;
+            /* border-radius: 4px; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #fileList li span {
+            flex-grow: 1;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="logo">
+
+            <img src="assets/img/学期系统500x200.png" alt="logo" width="150" height="60">
+
+         </div>            
+    <div class="menu">
+        <ul>
+            <li><a href="./index.html">计划主页</a></li>
+            <li><a href="./create.html">制作计划</a></li>
+            <li><a href="./instruction.html">软件说明</a></li>
+        </ul>
+    </div>
+    <div class="login">
+        <a href="./server.html">后台管理</a>
+        <a href="./model.html">模板更改</a>
+    </div>
+</div>
+
+<div class="page-content">
+
+    <h1>File Manager</h1>
+    <div>此内容仅管理员可访问</div>
+    <!-- <label for="fileInput" class="custom-file-upload">Add File</label>
+    <input type="file" id="fileInput" multiple>
+    <ul id="fileList"></ul>
+    <div id="status"></div> -->
+    <div class="footer-notice">
+        V1.2 学期计划专用    </div>
+</div>
+
+<!-- 
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+    const statusDiv = document.getElementById('status');
+
+    fileInput.addEventListener('change', (event) => {
+        const files = Array.from(event.target.files);
+        if (files.length > 0) {
+            uploadFiles(files);
+        }
+    });
+
+    function fetchFiles() {
+        fetch('/files')
+            .then(response => response.json())
+            .then(data => {
+                renderFileList(data);
+            });
+    }
+
+    function renderFileList(files) {
+        fileList.innerHTML = '';
+        files.forEach((file, index) => {
+            const li = document.createElement('li');
+            const span = document.createElement('span');
+            span.textContent = decodeURIComponent(file); // 解码文件名以正确显示
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = () => {
+                deleteFile(file);
+            };
+            li.appendChild(span);
+            li.appendChild(removeButton);
+            fileList.appendChild(li);
+        });
+    }
+
+    function uploadFiles(files) {
+        const formData = new FormData();
+        files.forEach(file => {
+            formData.append('files', file);
+        });
+
+        fetch('/source-upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+            statusDiv.innerText = result;
+            fetchFiles();
+        })
+        .catch(error => {
+            statusDiv.innerText = 'File upload failed!';
+            console.error('Error:', error);
+        });
+    }
+
+    function deleteFile(fileName) {
+        fetch('/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ fileName: fileName })
+        })
+        .then(response => response.text())
+        .then(result => {
+            statusDiv.innerText = result;
+            fetchFiles();
+        })
+        .catch(error => {
+            statusDiv.innerText = 'File delete failed!';
+            console.error('Error:', error);
+        });
+    }
+
+    fetchFiles();
+</script> -->
+</body>
+</html>
