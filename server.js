@@ -130,7 +130,7 @@ const sourceStorage = multer.diskStorage({
     }
 });
 
-const sourceUpload = multer({ storage: sourceStorage });
+// const sourceUpload = multer({ storage: sourceStorage });
 
 app.use(express.json());
 
@@ -145,9 +145,9 @@ app.get('/files', (req, res) => {
 });
 
 // 处理文件上传的 POST 请求（文件管理系统）
-app.post('/source-upload', sourceUpload.array('files', 10), (req, res) => { // 允许最多上传10个文件
-    res.send('Files uploaded successfully!');
-});
+// app.post('/source-upload', sourceUpload.array('files', 10), (req, res) => { // 允许最多上传10个文件
+//     res.send('Files uploaded successfully!');
+// });
 
 // 处理文件删除的 POST 请求（文件管理系统）
 app.post('/delete', (req, res) => {
@@ -164,3 +164,5 @@ app.post('/delete', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
 });
+
+
